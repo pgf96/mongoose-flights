@@ -1,0 +1,97 @@
+<%- include('../partials/header') %>
+
+    <section id="show-page">
+        <div> Airline</div>
+        <div>
+            <%= flight.airline %>
+        </div>
+        <div>Airport: </div>
+        <div>
+            <%= flight.airport %>
+        </div>
+        <div>flight No: </div>
+        <div>
+            <%= flight.flightNo %>
+        </div>
+        <div>Departure: </div>
+        <div>
+            <%= flight.departs %>
+        </div>
+        <div>tickets </div>
+        <ul>
+            <%- tickets.map(t=>
+                `<li>${t.seat} $${t.price}</li>`
+                ).join("")
+                %>
+        </ul>
+
+    </section>
+
+    <a href="/flights/<%=flight._id %>/tickets/new"> new ticket</a>
+    <!-- <form action=""></form> -->
+    <!-- take these out -->
+    <br>
+    <br>
+    <br>
+    <br>
+    <!-- take these out -->
+    <p>
+        <!-- <h2> Flight Schedule</h2> -->
+    </p>
+
+    <% if (flight.destinations.length) { %>
+        <table>
+            <thead>
+                <tr>
+                    <!-- <th>airport</th>
+                    <th>departure</th> -->
+                    <th>airport</th>
+                    <th>arrival</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <% flight.destinations.forEach(function(f) { %>
+                    <tr>
+                        <!-- <td>
+                            <%= flight.airport %>
+                        </td>
+                        <td>
+                            <%= flight.departs %>
+                        </td> -->
+                        <td>
+                            <%= f.airport %>
+                        </td>
+                        <td>
+                            <%= f.arrival %>
+                        </td>
+                    </tr>
+                    <% }); %>
+            </tbody>
+        </table>
+        <% } else { %>
+            <h5>No Additional Destinations </h5>
+            <% } %>
+
+                <!-- take these out -->
+                <br>
+                <br>
+                <br>
+                <br>
+                <!-- take these out -->
+
+
+                <form id="add-review-form" method="POST" action="/flights/<%= flight._id %>/destinations">
+                    <label>airport:</label>
+                    <select name="airport">
+                        <option value="American">--------- Select Airport------</option>
+                        <option value="AUS">AUS</option>
+                        <option value="DFW">DFW</option>
+                        <option value="DEN">DEN</option>
+                        <option value="LAX">LAX</option>
+                        <option value="SAN">SAN</option>
+                    </select>
+                    <label>arrival:</label>
+                    <input type="datetime-local" name="arrival">
+                    <input type="submit" value="Add Review">
+                </form>
