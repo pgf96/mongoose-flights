@@ -18,9 +18,6 @@ const newTicket = (req,res) => {
     })
 }
 
-
-
-
 module.exports = {
     create,
     new: newTicket,

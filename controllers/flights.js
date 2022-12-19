@@ -3,7 +3,7 @@ const Ticket = require('../models/ticket')
 
 const index = (req,res) => {
     Flight.find({}, (err,flights) => {
-        res.render("flights/index", { headerTitle: "this is the header", flights})
+        res.render("flights/index", { headerTitle: "All Flights", flights})
     })
 }
 
